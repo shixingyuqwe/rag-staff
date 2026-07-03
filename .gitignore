@@ -1,0 +1,30 @@
+# 虚拟环境
+venv/
+
+# 环境变量（包含 API Key，不能提交）
+.env
+
+# 上传的文件和向量库数据
+app/data/uploads/*
+app/data/chroma/*
+
+# 保留 uploads 和 chroma 目录结构
+!app/data/uploads/.gitkeep
+!app/data/chroma/.gitkeep
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db

@@ -1,0 +1,11 @@
+fastapi==0.115.0
+uvicorn[standard]==0.32.0
+python-multipart==0.0.12
+pypdf==4.3.1
+python-docx==1.1.2
+chromadb==0.5.15
+openai>=1.60.0
+python-dotenv==1.0.1
+pydantic==2.9.2
+pydantic-settings==2.6.0
+sentence-transformers==3.2.1
