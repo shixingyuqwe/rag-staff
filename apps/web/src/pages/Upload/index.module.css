@@ -1,0 +1,126 @@
+.container {
+  padding: 24px 32px;
+  min-height: calc(100vh - 64px);
+  background: #f5f7fb;
+}
+
+.card {
+  max-width: 1300px;
+  margin: 0 auto;
+  border: 1px solid #edf0f5;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.05);
+}
+
+.monthTagBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.monthTags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.monthTag {
+  cursor: pointer;
+  font-size: 13px;
+  padding: 4px 12px;
+  border-radius: 6px;
+  transition: all 0.2s;
+}
+
+.monthTag:hover {
+  border-color: #1677ff;
+  color: #1677ff;
+}
+
+.monthTagActive {
+  border-color: #1677ff !important;
+  color: #1677ff !important;
+  background: #e6f4ff !important;
+}
+
+.monthCardsList {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.monthCard :global(.ant-card-head) {
+  min-height: 44px;
+  border-bottom: none;
+}
+
+.monthCard :global(.ant-upload-drag) {
+  border-radius: 10px;
+  background: #fbfdff;
+  padding: 16px;
+  border-color: #d9d9d9;
+}
+
+.monthCard :global(.ant-upload-drag:hover) {
+  border-color: #1677ff;
+}
+
+.dragger {
+  border-radius: 10px;
+}
+
+.dragLink {
+  color: #1677ff;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0;
+  font: inherit;
+  line-height: inherit;
+}
+
+.dragLink:hover {
+  text-decoration: underline;
+}
+
+.fileCount {
+  margin-top: 8px;
+  color: #64748b;
+  font-size: 13px;
+}
+
+.uploadBtn {
+  margin-top: 32px;
+  text-align: center;
+}
+
+.autoNavigate {
+  margin-top: 12px;
+  text-align: center;
+  color: #64748b;
+  font-size: 13px;
+}
+
+.card :global(.ant-upload-list-item) {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  gap: 8px;
+  padding: 6px 10px;
+  border-radius: 8px;
+}
+
+.card :global(.ant-upload-list-item-name) {
+  flex: 0 1 auto !important;
+  max-width: 480px;
+  margin-left: 4px;
+  font-size: 13px;
+}
+
+.card :global(.ant-upload-list-item-actions) {
+  flex: 0 0 auto !important;
+  margin-left: 0 !important;
+  opacity: 1;
+}

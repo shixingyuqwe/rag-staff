@@ -1,0 +1,220 @@
+.container {
+  padding: 24px 32px;
+  min-height: calc(100vh - 64px);
+  background: #f5f7fb;
+}
+
+.filterCard {
+  margin-bottom: 24px;
+  border: 1px solid #edf0f5;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.04);
+}
+
+.filterRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.searchInput {
+  flex: 0 1 280px;
+  min-width: 200px;
+}
+
+.filterLabel {
+  color: #1f2937;
+  font-weight: 500;
+}
+
+.select {
+  min-width: 120px;
+}
+
+.batchId {
+  padding: 0;
+  border: none;
+  background: none;
+  color: #1677ff;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  text-align: left;
+}
+
+.batchId:hover {
+  color: #4096ff;
+  text-decoration: underline;
+}
+
+.batchId:focus-visible {
+  outline: 2px solid #1677ff;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+.totalText {
+  color: #64748b;
+  font-size: 14px;
+}
+
+.errorText {
+  margin-bottom: 12px;
+  color: #cf1322;
+}
+
+.container :global(.ant-card) {
+  border-radius: 12px;
+}
+
+.container :global(.ant-card-head) {
+  min-height: 52px;
+  border-bottom: 1px solid #edf0f5;
+}
+
+.container :global(.ant-table-thead > tr > th) {
+  background: #f8fafc;
+  color: #334155;
+  font-weight: 600;
+}
+
+.container :global(.ant-table-tbody > tr > td) {
+  color: #1f2937;
+}
+
+/* ── Detail Modal ── */
+
+.detailContent {
+  width: 100%;
+}
+
+.detailModal :global(.ant-modal-content) {
+  border-radius: 14px;
+  padding: 0;
+  overflow: hidden;
+}
+
+.detailModal :global(.ant-modal-header) {
+  margin: 0;
+  padding: 20px 24px 14px;
+  border-bottom: 1px solid #edf0f5;
+}
+
+.detailModal :global(.ant-modal-title) {
+  color: #0f172a;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.detailModal :global(.ant-modal-body) {
+  max-height: 76vh;
+  padding: 20px 24px 24px;
+  overflow-y: auto;
+  background: #fff;
+}
+
+.detailSummary {
+  padding: 16px 18px;
+  border: 1px solid #e5edf7;
+  border-radius: 10px;
+  background: #f8fafc;
+}
+
+.detailSummary :global(.ant-descriptions-item-label) {
+  color: #64748b;
+}
+
+.detailSummary :global(.ant-descriptions-item-content) {
+  color: #1f2937;
+}
+
+.strongText {
+  color: #0f172a;
+  font-weight: 700;
+}
+
+.detailSectionTitle {
+  display: flex;
+  align-items: center;
+  margin-bottom: 14px;
+  color: #0f172a;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.detailSectionTitle::before {
+  width: 4px;
+  height: 16px;
+  margin-right: 8px;
+  border-radius: 999px;
+  background: #1677ff;
+  content: "";
+}
+
+.metricCard {
+  border: 1px solid #bdd7f5;
+  border-radius: 10px;
+  background: linear-gradient(180deg, #f8fbff 0%, #f2f7ff 100%);
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(22, 119, 255, 0.06);
+}
+
+.metricCard :global(.ant-statistic-title) {
+  color: #5b6b82;
+  font-size: 13px;
+}
+
+.metricCard :global(.ant-statistic-content) {
+  color: #0756a5;
+  font-weight: 700;
+}
+
+.detailContent :global(.ant-alert) {
+  border-radius: 10px;
+}
+
+.fileCard {
+  border: 1px solid #d8e1ef;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.04);
+}
+
+.fileCardContent {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  gap: 12px;
+  justify-content: space-between;
+}
+
+.fileIcon {
+  flex: 0 0 auto;
+  width: 36px;
+  height: 36px;
+  padding: 8px;
+  border-radius: 8px;
+  background: #eef6ff;
+  color: #1677ff;
+  font-size: 20px;
+}
+
+.fileInfo {
+  flex: 1;
+  min-width: 0;
+}
+
+.fileName {
+  overflow: hidden;
+  color: #0f172a;
+  font-weight: 600;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.fileMeta {
+  margin-top: 4px;
+  color: #64748b;
+  font-size: 12px;
+}

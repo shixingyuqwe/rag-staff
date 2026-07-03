@@ -1,0 +1,75 @@
+.container {
+  padding: 24px 32px;
+  min-height: calc(100vh - 64px);
+  background: #f5f7fb;
+}
+
+.card {
+  max-width: 1300px;
+  margin: 0 auto;
+  border: 1px solid #edf0f5;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.05);
+}
+
+.card :global(.ant-card-head) {
+  min-height: 52px;
+  border-bottom: 1px solid #edf0f5;
+}
+
+.card :global(.ant-table-thead > tr > th) {
+  background: #f8fafc;
+  color: #334155;
+  font-weight: 600;
+}
+
+.card :global(.ant-table-tbody > tr > td) {
+  color: #1f2937;
+}
+
+.dualColumns {
+  min-height: 400px;
+}
+
+.dualCard {
+  height: 100%;
+  border: 1px solid #e5edf7;
+  border-radius: 10px;
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.04);
+}
+
+.dualCard :global(.ant-card-head) {
+  min-height: 48px;
+}
+
+.cardSubtitle {
+  margin: 0;
+  color: #64748b;
+  font-size: 13px;
+}
+
+.subtitleRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.legend {
+  margin-top: 12px;
+  padding: 10px 14px;
+  background: #fffbe6;
+  border: 1px solid #ffe58f;
+  border-radius: 8px;
+  color: #64748b;
+  font-size: 12px;
+}
+
+.warningIcon {
+  color: #fa8c16;
+}
+
+.legendNote {
+  color: #8c8c8c;
+  margin-left: 8px;
+}

@@ -1,0 +1,123 @@
+.layout {
+  min-height: 100vh;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  padding: 0 24px;
+  background: linear-gradient(90deg, #06111f 0%, #0b1b2f 52%, #082033 100%);
+  border-bottom: 1px solid rgba(125, 178, 255, 0.14);
+  box-shadow: 0 8px 24px rgba(7, 17, 31, 0.18);
+  z-index: 10;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border: none;
+  background: transparent;
+  color: white;
+  font-size: 18px;
+  font-weight: 600;
+  margin-right: 32px;
+  padding: 0;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.logoIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  background: linear-gradient(135deg, #2f7dff 0%, #58d5ff 100%);
+  box-shadow: 0 0 18px rgba(47, 125, 255, 0.32);
+  font-size: 16px;
+}
+
+.topMenu {
+  flex: 1;
+  min-width: 0;
+}
+
+.sider {
+  background: #fff;
+  border-right: 1px solid #f0f0f0;
+  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.03);
+}
+
+.sideTitle {
+  padding: 20px 20px 12px;
+  color: #999;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+}
+
+.sideNav {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 0 12px;
+}
+
+.navItem {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 12px 16px;
+  border: none;
+  border-radius: 8px;
+  background: transparent;
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.2s;
+  font-size: 14px;
+  color: #333;
+}
+
+.navItem:hover {
+  background: #f5f7ff;
+  color: #1677ff;
+}
+
+.navItemActive {
+  background: #e6f4ff;
+  color: #1677ff;
+  font-weight: 500;
+}
+
+.navItemActive:hover {
+  background: #d6edff;
+}
+
+.navIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+  font-size: 16px;
+}
+
+.completedIcon {
+  color: #52c41a;
+}
+
+.navTitle {
+  flex: 1;
+  font-size: 14px;
+}
+
+.content {
+  background: #f0f2f5;
+  overflow: auto;
+  min-height: calc(100vh - 64px);
+}

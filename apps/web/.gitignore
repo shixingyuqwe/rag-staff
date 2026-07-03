@@ -1,0 +1,7 @@
+node_modules/
+dist/
+.rsbuild/
+*.local
+.env.local
+.env.*.local
+.codex-screenshots/

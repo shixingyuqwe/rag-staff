@@ -1,0 +1,15 @@
+{
+  "name": "hr-policy-rag-platform",
+  "private": true,
+  "scripts": {
+    "dev:web": "pnpm --dir apps/web dev",
+    "build:web": "pnpm --dir apps/web build",
+    "dev:rag": "cd apps/rag-service && .venv/Scripts/python -m uvicorn app.main:app --reload --host 127.0.0.1 --port 8000",
+    "dev": "concurrently \"pnpm dev:web\" \"pnpm dev:rag\"",
+    "install:web": "pnpm --dir apps/web install",
+    "install:rag": "cd apps/rag-service && .venv/Scripts/pip install -r requirements.txt"
+  },
+  "devDependencies": {
+    "concurrently": "^9.0.0"
+  }
+}

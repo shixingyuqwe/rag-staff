@@ -1,19 +1,138 @@
-# HR Policy RAG - 人事制度知识库问答系统
+# HR Policy RAG Platform
 
-一个基于 RAG（检索增强生成）的人事制度知识库问答系统。
-上传制度文档后，可以通过自然语言提问，系统会基于制度内容生成回答并返回引用来源。
+人事制度知识库 RAG 系统 — Monorepo 版本
 
-## 项目目标
+> **说明**：公司原前端仓库 `D:\aiProject\staff-manager-frontend` 不会被修改。
+> 本项目中的 `apps/web` 是学习项目副本。
 
-这是个人学习项目，用于掌握 RAG 底层链路：
+## 项目结构
 
+```text
+hr-policy-rag/
+  apps/
+    web/                  # 前端项目（React + Rsbuild）
+    rag-service/          # Python FastAPI RAG 服务
+    api-service/          # 预留，暂不实现
+  docs/
+    learning_guide.md     # RAG 学习指南
+    test_cases.md         # RAG 测试用例
+    api_contract.md       # 前后端 API 约定
+  package.json            # PNPM 根配置（启动脚本）
+  pnpm-workspace.yaml     # PNPM Workspace 配置
+  .gitignore
+  README.md
 ```
-上传制度文档 → 解析文本 → 文档切分 → 向量化 → 存入向量库
-→ 用户提问 → 检索相关片段 → 调用大模型 → 返回答案和引用来源
+
+**注意**：
+- PNPM 只管理 Node / 前端相关依赖
+- Python 服务仍然使用自己的 `requirements.txt`、`.env`、虚拟环境
+- 根目录负责统一组织项目和提供启动脚本
+
+## 前置要求
+
+- **Node.js** 18+ 和 **PNPM**
+- **Python** 3.10+
+- **DeepSeek API Key**（[申请地址](https://platform.deepseek.com/)）
+
+## 快速开始
+
+### 1. 安装前端依赖
+
+```bash
+pnpm install:web
+# 或
+cd apps/web && pnpm install
 ```
+
+### 2. 配置前端环境变量
+
+```bash
+cd apps/web
+cp .env.example .env.development
+# 编辑 .env.development，按需修改
+```
+
+### 3. 安装 Python 依赖
+
+```bash
+cd apps/rag-service
+python -m venv .venv
+
+# Windows:
+.venv\Scripts\activate
+# Mac/Linux:
+source .venv/bin/activate
+
+pip install -r requirements.txt
+```
+
+### 4. 配置 RAG 服务环境变量
+
+```bash
+cd apps/rag-service
+cp .env.example .env
+# 编辑 .env，填入你的 DeepSeek API Key
+```
+
+### 5. 启动服务
+
+```bash
+# 方式一：分别启动
+pnpm dev:web     # 前端（默认 http://localhost:3000）
+pnpm dev:rag     # RAG 服务（http://127.0.0.1:8000）
+
+# 方式二：同时启动
+pnpm dev
+```
+
+## API 接口
+
+### RAG 服务
+
+| 方法 | 路径 | 说明 |
+|------|------|------|
+| `GET` | `/` | 服务信息 |
+| `GET` | `/health` | 健康检查 |
+| `POST` | `/api/kb/upload` | 上传制度文档（PDF/DOCX/TXT） |
+| `POST` | `/api/kb/query` | 知识库问答 |
+| `GET` | `/api/kb/documents` | 已上传文档列表 |
+
+> 启动 RAG 服务后访问 `http://127.0.0.1:8000/docs` 查看 Swagger 文档。
+
+### 前端代理
+
+前端开发服务器已配置 RAG API 代理：
+- `/rag-api/*` → `http://127.0.0.1:8000/*`
+
+前端代码中通过 `RAG_API_BASE` 常量访问 RAG 服务。
+
+## 环境变量说明
+
+### RAG 服务 (`apps/rag-service/.env`)
+
+| 变量 | 说明 |
+|------|------|
+| `DEEPSEEK_API_KEY` | DeepSeek API Key |
+| `DEEPSEEK_BASE_URL` | DeepSeek API 基础 URL |
+| `DEEPSEEK_CHAT_MODEL` | 聊天模型名称 |
+| `EMBEDDING_MODEL` | Embedding 模型 |
+| `UPLOAD_DIR` | 上传文件目录 |
+| `CHROMA_PERSIST_DIR` | Chroma 持久化目录 |
+| `CHUNK_SIZE` | 切分块大小 |
+| `CHUNK_OVERLAP` | 切分块重叠 |
+
+### 前端 (`apps/web/.env.development`)
+
+| 变量 | 说明 |
+|------|------|
+| `PUBLIC_PATH` | 公共路径 |
+| `PUBLIC_RAG_API_BASE` | RAG 服务地址 |
+| `PUBLIC_MF_API_BASE` | MarketingForce API 基础路径 |
+| `PUBLIC_MF_API_TOKEN` | MarketingForce API Token |
 
 ## 技术栈
 
+### RAG 服务
 | 组件 | 技术 | 说明 |
 |------|------|------|
 | Web 框架 | FastAPI + Uvicorn | 高性能异步 API 框架 |
@@ -23,173 +142,16 @@
 | 向量库 | Chroma | 轻量级本地向量数据库 |
 | 大模型 | DeepSeek API | OpenAI 兼容格式 |
 
-## 安装方式
-
-### 前置要求
-
-- Python 3.10+
-- DeepSeek API Key（[申请地址](https://platform.deepseek.com/)）
-
-### 安装步骤
-
-```bash
-# 1. 进入项目目录
-cd hr-policy-rag
-
-# 2. 创建虚拟环境
-python -m venv venv
-
-# 3. 激活虚拟环境
-# Windows:
-venv\Scripts\activate
-# Mac/Linux:
-source venv/bin/activate
-
-# 4. 安装依赖
-pip install -r requirements.txt
-
-# 5. 配置环境变量
-cp .env.example .env
-# 编辑 .env，填入你的 DeepSeek API Key
-```
-
-## 启动方式
-
-```bash
-# 启动服务
-uvicorn app.main:app --reload --port 8000
-
-# 访问 API 文档
-open http://localhost:8000/docs
-```
-
-> 首次启动时，Embedding 模型会自动下载（约 100MB），请耐心等待。
-
-## API 接口
-
-### 健康检查
-
-```bash
-GET /health
-
-# 响应
-{"status": "ok"}
-```
-
-### 上传制度文档
-
-```bash
-POST /api/kb/upload
-Content-Type: multipart/form-data
-
-# 参数：file (PDF/DOCX/TXT)
-# 响应：
-{
-  "document_id": "cda34092",
-  "filename": "招聘专员晋升制度.pdf",
-  "chunk_count": 32,
-  "message": "上传成功！文档已切分为 32 个片段并建立索引。"
-}
-```
-
-### 查询知识库
-
-```bash
-POST /api/kb/query
-Content-Type: application/json
-
-{
-  "question": "P2-1 招聘专员升级标准是什么？",
-  "top_k": 3
-}
-
-# 响应：
-{
-  "answer": "根据《招聘专员晋升制度》第五条，P2-1 升级标准为...",
-  "sources": [
-    {
-      "chunk_id": "cda34092_chunk_0001",
-      "filename": "招聘专员晋升制度.pdf",
-      "text": "第五条 P1-3 升级至 P2-1 标准：...",
-      "score": 0.82,
-      "chunk_index": 1
-    }
-  ]
-}
-```
-
-### 查看已上传文档
-
-```bash
-GET /api/kb/documents
-
-# 响应：
-[
-  {
-    "document_id": "cda34092",
-    "filename": "招聘专员晋升制度.pdf",
-    "chunk_count": 32,
-    "file_size": 15420,
-    "upload_time": "2026-07-03 11:28:04"
-  }
-]
-```
-
-## RAG 流程图
-
-```
-┌─────────────────────────────────────────────────────────────────┐
-│                        文档上传流程                              │
-├─────────────────────────────────────────────────────────────────┤
-│                                                                 │
-│  用户上传文件 → 保存到本地 → 解析文本 → 切分 chunk              │
-│                                          ↓                      │
-│                          生成 embedding → 存入 Chroma           │
-│                                                                 │
-└─────────────────────────────────────────────────────────────────┘
-
-┌─────────────────────────────────────────────────────────────────┐
-│                        RAG 查询流程                              │
-├─────────────────────────────────────────────────────────────────┤
-│                                                                 │
-│  用户提问 → 问题 embedding → Chroma 检索 top_k 个 chunk         │
-│                                          ↓                      │
-│              拼接 context + prompt → 调用 DeepSeek LLM          │
-│                                          ↓                      │
-│                     返回 answer + sources                       │
-│                                                                 │
-└─────────────────────────────────────────────────────────────────┘
-```
-
-## 项目结构
-
-```
-hr-policy-rag/
-  app/
-    main.py              # FastAPI 入口
-    api/
-      kb.py              # 知识库 API（上传/查询/文档列表）
-    core/
-      config.py          # 配置管理
-      llm.py             # DeepSeek LLM 客户端
-      embeddings.py      # Embedding 模型封装
-    services/
-      document_loader.py # 文档解析（PDF/DOCX/TXT）
-      chunk_service.py   # 文本切分
-      vector_store.py    # Chroma 向量库操作
-      rag_service.py     # RAG 流程编排
-    models/
-      schemas.py         # Pydantic 数据模型
-    data/
-      uploads/           # 上传文件存储
-      chroma/            # Chroma 持久化数据
-  docs/
-    learning_guide.md    # 学习指南
-    test_cases.md        # 测试用例
-  requirements.txt
-  .env.example
-  README.md
-```
+### 前端
+| 组件 | 技术 |
+|------|------|
+| 框架 | React 19 |
+| 构建工具 | Rsbuild |
+| UI 组件 | Ant Design 6 |
+| 路由 | TanStack Router |
+| 状态管理 | Zustand |
+| HTTP 客户端 | Ky |
+| CSS | Tailwind CSS 4 |
 
 ## 当前限制
 
@@ -198,14 +160,19 @@ hr-policy-rag/
 3. 没有用户认证和权限控制
 4. 分块策略较简单，不支持按标题/段落切分
 5. 不支持多轮对话
+6. 前端尚未完全接入 RAG 功能
 
-## 下一步计划（第二阶段）
+## 下一阶段计划
 
-- 加入 Excel 上传和规则评分
-- RAG 检索制度依据
-- 生成评分解释
-- 前端对接
+- [ ] 前端页面接入 RAG 上传和问答
+- [ ] Excel 上传和规则评分
+- [ ] RAG 检索制度依据
+- [ ] 用户登录
+- [ ] Docker Compose 部署
+- [ ] 生产环境网关配置
 
 ## 学习资源
 
-详细的学习指南请查看 [docs/learning_guide.md](docs/learning_guide.md)
+- RAG 学习指南：[docs/learning_guide.md](docs/learning_guide.md)
+- RAG 测试用例：[docs/test_cases.md](docs/test_cases.md)
+- API 约定：[docs/api_contract.md](docs/api_contract.md)

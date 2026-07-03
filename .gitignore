@@ -1,30 +1,61 @@
-# 虚拟环境
+# ===========================
+# Python 虚拟环境
+# ===========================
 venv/
+.venv/
+apps/rag-service/venv/
+apps/rag-service/.venv/
 
+# ===========================
 # 环境变量（包含 API Key，不能提交）
+# ===========================
 .env
+apps/rag-service/.env
+apps/web/.env
+apps/web/.env.development
+apps/web/.env.production
 
-# 上传的文件和向量库数据
-app/data/uploads/*
-app/data/chroma/*
+# ===========================
+# Node / 前端
+# ===========================
+node_modules/
+dist/
+.turbo/
 
-# 保留 uploads 和 chroma 目录结构
-!app/data/uploads/.gitkeep
-!app/data/chroma/.gitkeep
-
-# Python
+# ===========================
+# Python 运行时
+# ===========================
 __pycache__/
 *.py[cod]
 *.egg-info/
-dist/
-build/
+*.egg
 
+# ===========================
+# RAG 服务数据（上传文件和向量库）
+# ===========================
+apps/rag-service/app/data/uploads/*
+apps/rag-service/app/data/chroma/*
+
+# 保留目录结构
+!apps/rag-service/app/data/uploads/.gitkeep
+!apps/rag-service/app/data/chroma/.gitkeep
+
+# ===========================
 # IDE
+# ===========================
 .idea/
 .vscode/
 *.swp
 *.swo
 
+# ===========================
 # OS
+# ===========================
 .DS_Store
 Thumbs.db
+
+# ===========================
+# 其他
+# ===========================
+.codex-screenshots/
+*.log

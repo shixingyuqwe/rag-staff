@@ -1,0 +1,33 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(//home/user/**)",
+      "Read(//home/user/app/**)",
+      "Bash(cp -r app apps/rag-service/app)",
+      "Bash(cp -r test_data apps/rag-service/test_data)",
+      "Bash(rm -rf test_data requirements.txt .env.example .env)",
+      "Bash(rm -rf app/api app/core app/models app/services app/__init__.py app/__pycache__ app/main.py)",
+      "Bash(rm -rf app/data/uploads)",
+      "Bash(robocopy \"D:\\\\aiProject\\\\staff-manager-frontend\" \"D:\\\\AI应用学习\\\\RAG项目\\\\hr-policy-rag\\\\apps\\\\web\" /E /XD .git node_modules dist .codex-screenshots)",
+      "Bash(cp -r src docs public package.json pnpm-lock.yaml pnpm-workspace.yaml rsbuild.config.ts tsconfig.json biome.json Dockerfile nginx.conf .env.development .env.production .gitignore \"D:\\\\AI应用学习\\\\RAG项目\\\\hr-policy-rag\\\\apps\\\\web/\")",
+      "Bash(echo \"exit: $?\")",
+      "Bash(pnpm --version)",
+      "Bash(python -m venv .venv)",
+      "Bash(.venv/Scripts/python -m pip install -r requirements.txt)",
+      "Bash(.venv/Scripts/python -m uvicorn app.main:app --host 127.0.0.1 --port 8000)",
+      "Bash(curl -s http://127.0.0.1:8000/health)",
+      "Bash(curl -s http://127.0.0.1:8000/)",
+      "Bash(pnpm install *)",
+      "Bash(tasklist)",
+      "Bash(taskkill //PID 5420 //F)",
+      "Bash(timeout 15 pnpm dev:web)",
+      "Bash(echo \"EXIT_CODE: $?\")",
+      "Bash(taskkill //PID 6312 //F)",
+      "Bash(timeout 20 pnpm dev:web)",
+      "Bash(timeout 18 pnpm dev:web)"
+    ],
+    "additionalDirectories": [
+      "D:\\AIӦ��ѧϰ\\RAG��Ŀ\\hr-policy-rag"
+    ]
+  }
+}
