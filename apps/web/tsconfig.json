@@ -15,12 +15,14 @@
     "allowImportingTsExtensions": true,
 
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
+      "@hr-rag/chat-ui": ["../../packages/chat-ui/src/index.ts"],
+      "@hr-rag/chat-ui/*": ["../../packages/chat-ui/src/*"]
     },
 
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true
   },
-  "include": ["src", "*.ts"]
+  "include": ["src", "*.ts", "../../packages/chat-ui/src"]
 }

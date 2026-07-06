@@ -3,6 +3,7 @@ import {
   CheckCircleOutlined,
   CheckOutlined,
   FileTextOutlined,
+  MessageOutlined,
   TeamOutlined,
   UploadOutlined,
 } from '@ant-design/icons';
@@ -35,6 +36,11 @@ export default function MainLayout() {
       key: '/scoring-group',
       icon: <TeamOutlined />,
       label: '升降级评分',
+    },
+    {
+      key: '/chat',
+      icon: <MessageOutlined />,
+      label: '制度问答',
     },
     {
       key: '/logs',

@@ -24,7 +24,12 @@
       "Bash(echo \"EXIT_CODE: $?\")",
       "Bash(taskkill //PID 6312 //F)",
       "Bash(timeout 20 pnpm dev:web)",
-      "Bash(timeout 18 pnpm dev:web)"
+      "Bash(timeout 18 pnpm dev:web)",
+      "Bash(pnpm --dir apps/web add clsx tailwind-merge class-variance-authority lucide-react @radix-ui/react-slot @radix-ui/react-scroll-area @radix-ui/react-collapsible @radix-ui/react-separator)",
+      "Bash(taskkill //F //IM python.exe)",
+      "Bash(curl -s -X POST http://127.0.0.1:8000/api/chat/stream -H \"Content-Type: application/json\" -d '{\"messages\":[{\"role\":\"user\",\"content\":\"你好\"}],\"top_k\":3}' --max-time 15)",
+      "Bash(curl -s -X POST http://127.0.0.1:8000/api/chat/stream -H \"Content-Type: application/json\" --data-raw \"{\\\\\"messages\\\\\":[{\\\\\"role\\\\\":\\\\\"user\\\\\",\\\\\"content\\\\\":\\\\\"hello\\\\\"}],\\\\\"top_k\\\\\":3}\" --max-time 20)",
+      "Bash(curl -s http://127.0.0.1:8000/api/kb/documents)"
     ],
     "additionalDirectories": [
       "D:\\AIӦ��ѧϰ\\RAG��Ŀ\\hr-policy-rag"

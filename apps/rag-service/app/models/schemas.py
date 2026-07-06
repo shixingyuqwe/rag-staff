@@ -63,3 +63,17 @@ class UploadResponse(BaseModel):
     filename: str
     chunk_count: int
     message: str
+
+
+# ========== 聊天流式接口模型 ==========
+
+class ChatMessage(BaseModel):
+    """聊天消息"""
+    role: str = Field(..., description="角色: user / assistant / system")
+    content: str = Field(..., description="消息内容")
+
+
+class ChatStreamRequest(BaseModel):
+    """聊天流式请求"""
+    messages: list[ChatMessage] = Field(..., description="对话消息列表")
+    top_k: int = Field(default=5, ge=1, le=10, description="检索制度片段数量")

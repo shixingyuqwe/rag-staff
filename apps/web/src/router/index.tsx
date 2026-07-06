@@ -2,6 +2,7 @@ import { createRootRoute, createRoute, createRouter } from '@tanstack/react-rout
 import MainLayout from '@/layouts/MainLayout';
 import Assessment from '@/pages/Assessment';
 import Logs from '@/pages/Logs';
+import PolicyChat from '@/pages/PolicyChat';
 import Scoring from '@/pages/Scoring';
 import Upload from '@/pages/Upload';
 import Welcome from '@/pages/Welcome';
@@ -38,6 +39,12 @@ const logsRoute = createRoute({
   component: Logs,
 });
 
+const chatRoute = createRoute({
+  getParentRoute: () => layoutRoute,
+  path: '/chat',
+  component: PolicyChat,
+});
+
 const indexRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: '/',
@@ -46,7 +53,7 @@ const indexRoute = createRoute({
 
 const routeTree = rootRoute.addChildren([
   indexRoute,
-  layoutRoute.addChildren([uploadRoute, scoringRoute, assessmentRoute, logsRoute]),
+  layoutRoute.addChildren([uploadRoute, scoringRoute, assessmentRoute, logsRoute, chatRoute]),
 ]);
 
 export const router = createRouter({

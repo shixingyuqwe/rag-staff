@@ -1,0 +1,141 @@
+/* ChatMessageItem */
+
+.chat-msg {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  max-width: 100%;
+}
+
+.chat-msg-user {
+  align-items: flex-end;
+}
+
+.chat-msg-assistant {
+  align-items: flex-start;
+}
+
+.chat-msg-events {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  width: 100%;
+  max-width: 720px;
+}
+
+/* 气泡 */
+.chat-bubble {
+  position: relative;
+  max-width: 720px;
+  padding: 10px 14px;
+  border-radius: 12px;
+  font-size: 14px;
+  line-height: 1.7;
+  word-break: break-word;
+  white-space: pre-wrap;
+}
+
+.chat-bubble-user {
+  background: #1677ff;
+  color: #fff;
+  border-bottom-right-radius: 4px;
+}
+
+.chat-bubble-assistant {
+  background: #f5f5f5;
+  color: #1a1a1a;
+  border-bottom-left-radius: 4px;
+}
+
+.chat-bubble-content {
+  min-width: 0;
+}
+
+.chat-bubble-text {
+  white-space: pre-wrap;
+}
+
+/* 打字动画 */
+.chat-bubble-typing {
+  display: flex;
+  gap: 4px;
+  padding: 4px 0;
+}
+
+.chat-bubble-typing span {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #bfbfbf;
+  animation: typing-dot 1.4s infinite ease-in-out both;
+}
+
+.chat-bubble-typing span:nth-child(1) { animation-delay: 0s; }
+.chat-bubble-typing span:nth-child(2) { animation-delay: 0.2s; }
+.chat-bubble-typing span:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes typing-dot {
+  0%, 80%, 100% { transform: scale(0.6); opacity: 0.4; }
+  40% { transform: scale(1); opacity: 1; }
+}
+
+/* 气泡操作按钮 */
+.chat-bubble-actions {
+  display: flex;
+  gap: 4px;
+  margin-top: 6px;
+  opacity: 0;
+  transition: opacity 0.15s;
+}
+
+.chat-bubble:hover .chat-bubble-actions {
+  opacity: 1;
+}
+
+.chat-action-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border: none;
+  border-radius: 4px;
+  background: transparent;
+  color: #bfbfbf;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.chat-action-btn:hover {
+  background: #e8e8e8;
+  color: #595959;
+}
+
+/* 错误 */
+.chat-msg-error {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 0;
+  color: #ff4d4f;
+  font-size: 13px;
+}
+
+.chat-retry-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-left: 4px;
+  padding: 2px 8px;
+  border: 1px solid #ff4d4f;
+  border-radius: 4px;
+  background: transparent;
+  color: #ff4d4f;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.chat-retry-btn:hover {
+  background: #fff1f0;
+}

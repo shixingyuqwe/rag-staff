@@ -4,6 +4,7 @@ import {
   ClockCircleOutlined,
   FileSearchOutlined,
   FileTextOutlined,
+  MessageOutlined,
   PlayCircleOutlined,
   SafetyCertificateOutlined,
   TeamOutlined,
@@ -113,6 +114,14 @@ export default function WelcomePage() {
           >
             <TeamOutlined />
             <span>升降级评分</span>
+          </button>
+          <button
+            type="button"
+            className={`${styles.navItem} cursor-target`}
+            onClick={() => navigate({ to: '/chat' })}
+          >
+            <MessageOutlined />
+            <span>制度问答</span>
           </button>
           <button
             type="button"

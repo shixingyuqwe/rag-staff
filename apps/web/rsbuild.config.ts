@@ -16,6 +16,7 @@ export default defineConfig({
   resolve: {
     alias: {
       '@': resolve(__dirname, 'src'),
+      '@hr-rag/chat-ui': resolve(__dirname, '../../packages/chat-ui/src'),
     },
   },
   source: {
