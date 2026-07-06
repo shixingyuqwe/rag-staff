@@ -63,7 +63,9 @@ def create_app() -> FastAPI:
 
     # 注册 API 路由
     from app.api.kb import router as kb_router
+    from app.api.chat import router as chat_router
     app.include_router(kb_router, prefix="/api/kb", tags=["knowledge-base"])
+    app.include_router(chat_router, prefix="/api/chat", tags=["chat"])
 
     return app
 

@@ -1,0 +1,39 @@
+/* ChatMarker */
+
+.chat-marker {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 10px;
+  border-radius: 4px;
+  font-size: 12px;
+  width: fit-content;
+}
+
+.chat-marker-running {
+  color: #1677ff;
+  background: #e6f4ff;
+}
+
+.chat-marker-done {
+  color: #52c41a;
+  background: #f6ffed;
+}
+
+.chat-marker-error {
+  color: #ff4d4f;
+  background: #fff2f0;
+}
+
+.chat-marker-label {
+  line-height: 1.4;
+}
+
+.chat-marker-spin {
+  animation: chat-marker-rotate 1s linear infinite;
+}
+
+@keyframes chat-marker-rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}

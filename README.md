@@ -2,8 +2,7 @@
 
 人事制度知识库 RAG 系统 — Monorepo 版本
 
-> **说明**：公司原前端仓库 `D:\aiProject\staff-manager-frontend` 不会被修改。
-> 本项目中的 `apps/web` 是学习项目副本。
+>
 
 ## 项目结构
 
@@ -24,6 +23,7 @@ hr-policy-rag/
 ```
 
 **注意**：
+
 - PNPM 只管理 Node / 前端相关依赖
 - Python 服务仍然使用自己的 `requirements.txt`、`.env`、虚拟环境
 - 根目录负责统一组织项目和提供启动脚本
@@ -89,19 +89,22 @@ pnpm dev
 
 ### RAG 服务
 
-| 方法 | 路径 | 说明 |
-|------|------|------|
-| `GET` | `/` | 服务信息 |
-| `GET` | `/health` | 健康检查 |
-| `POST` | `/api/kb/upload` | 上传制度文档（PDF/DOCX/TXT） |
-| `POST` | `/api/kb/query` | 知识库问答 |
-| `GET` | `/api/kb/documents` | 已上传文档列表 |
+
+| 方法     | 路径                  | 说明                   |
+| ------ | ------------------- | -------------------- |
+| `GET`  | `/`                 | 服务信息                 |
+| `GET`  | `/health`           | 健康检查                 |
+| `POST` | `/api/kb/upload`    | 上传制度文档（PDF/DOCX/TXT） |
+| `POST` | `/api/kb/query`     | 知识库问答                |
+| `GET`  | `/api/kb/documents` | 已上传文档列表              |
+
 
 > 启动 RAG 服务后访问 `http://127.0.0.1:8000/docs` 查看 Swagger 文档。
 
 ### 前端代理
 
 前端开发服务器已配置 RAG API 代理：
+
 - `/rag-api/*` → `http://127.0.0.1:8000/*`
 
 前端代码中通过 `RAG_API_BASE` 常量访问 RAG 服务。
@@ -110,48 +113,58 @@ pnpm dev
 
 ### RAG 服务 (`apps/rag-service/.env`)
 
-| 变量 | 说明 |
-|------|------|
-| `DEEPSEEK_API_KEY` | DeepSeek API Key |
-| `DEEPSEEK_BASE_URL` | DeepSeek API 基础 URL |
-| `DEEPSEEK_CHAT_MODEL` | 聊天模型名称 |
-| `EMBEDDING_MODEL` | Embedding 模型 |
-| `UPLOAD_DIR` | 上传文件目录 |
-| `CHROMA_PERSIST_DIR` | Chroma 持久化目录 |
-| `CHUNK_SIZE` | 切分块大小 |
-| `CHUNK_OVERLAP` | 切分块重叠 |
+
+| 变量                    | 说明                  |
+| --------------------- | ------------------- |
+| `DEEPSEEK_API_KEY`    | DeepSeek API Key    |
+| `DEEPSEEK_BASE_URL`   | DeepSeek API 基础 URL |
+| `DEEPSEEK_CHAT_MODEL` | 聊天模型名称              |
+| `EMBEDDING_MODEL`     | Embedding 模型        |
+| `UPLOAD_DIR`          | 上传文件目录              |
+| `CHROMA_PERSIST_DIR`  | Chroma 持久化目录        |
+| `CHUNK_SIZE`          | 切分块大小               |
+| `CHUNK_OVERLAP`       | 切分块重叠               |
+
 
 ### 前端 (`apps/web/.env.development`)
 
-| 变量 | 说明 |
-|------|------|
-| `PUBLIC_PATH` | 公共路径 |
-| `PUBLIC_RAG_API_BASE` | RAG 服务地址 |
-| `PUBLIC_MF_API_BASE` | MarketingForce API 基础路径 |
+
+| 变量                    | 说明                       |
+| --------------------- | ------------------------ |
+| `PUBLIC_PATH`         | 公共路径                     |
+| `PUBLIC_RAG_API_BASE` | RAG 服务地址                 |
+| `PUBLIC_MF_API_BASE`  | MarketingForce API 基础路径  |
 | `PUBLIC_MF_API_TOKEN` | MarketingForce API Token |
+
 
 ## 技术栈
 
 ### RAG 服务
-| 组件 | 技术 | 说明 |
-|------|------|------|
-| Web 框架 | FastAPI + Uvicorn | 高性能异步 API 框架 |
-| 文档解析 | pypdf + python-docx | PDF 和 Word 文本提取 |
-| 文本切分 | 自实现 | 滑动窗口 + 句子边界检测 |
+
+
+| 组件        | 技术                    | 说明                           |
+| --------- | --------------------- | ---------------------------- |
+| Web 框架    | FastAPI + Uvicorn     | 高性能异步 API 框架                 |
+| 文档解析      | pypdf + python-docx   | PDF 和 Word 文本提取              |
+| 文本切分      | 自实现                   | 滑动窗口 + 句子边界检测                |
 | Embedding | sentence-transformers | BAAI/bge-small-zh-v1.5（中文优化） |
-| 向量库 | Chroma | 轻量级本地向量数据库 |
-| 大模型 | DeepSeek API | OpenAI 兼容格式 |
+| 向量库       | Chroma                | 轻量级本地向量数据库                   |
+| 大模型       | DeepSeek API          | OpenAI 兼容格式                  |
+
 
 ### 前端
-| 组件 | 技术 |
-|------|------|
-| 框架 | React 19 |
-| 构建工具 | Rsbuild |
-| UI 组件 | Ant Design 6 |
-| 路由 | TanStack Router |
-| 状态管理 | Zustand |
-| HTTP 客户端 | Ky |
-| CSS | Tailwind CSS 4 |
+
+
+| 组件       | 技术              |
+| -------- | --------------- |
+| 框架       | React 19        |
+| 构建工具     | Rsbuild         |
+| UI 组件    | Ant Design 6    |
+| 路由       | TanStack Router |
+| 状态管理     | Zustand         |
+| HTTP 客户端 | Ky              |
+| CSS      | Tailwind CSS 4  |
+
 
 ## 当前限制
 
@@ -164,15 +177,16 @@ pnpm dev
 
 ## 下一阶段计划
 
-- [ ] 前端页面接入 RAG 上传和问答
-- [ ] Excel 上传和规则评分
-- [ ] RAG 检索制度依据
-- [ ] 用户登录
-- [ ] Docker Compose 部署
-- [ ] 生产环境网关配置
+- 前端页面接入 RAG 上传和问答
+- Excel 上传和规则评分
+- RAG 检索制度依据
+- 用户登录
+- Docker Compose 部署
+- 生产环境网关配置
 
 ## 学习资源
 
 - RAG 学习指南：[docs/learning_guide.md](docs/learning_guide.md)
 - RAG 测试用例：[docs/test_cases.md](docs/test_cases.md)
 - API 约定：[docs/api_contract.md](docs/api_contract.md)
+

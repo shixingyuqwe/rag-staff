@@ -57,6 +57,38 @@ class LLMClient:
         except Exception as e:
             return f"[错误] LLM 调用失败: {str(e)}"
 
+    async def stream_chat(
+        self,
+        messages: List[Dict[str, str]],
+        temperature: float = 0.3,
+    ):
+        """
+        流式对话请求 - 逐 token 返回生成内容
+
+        参数：
+            messages: 对话消息列表
+            temperature: 温度参数
+
+        返回：
+            异步生成器，每次 yield 一个文本片段（token）
+        """
+        if not settings.deepseek_api_key or settings.deepseek_api_key == "your_deepseek_api_key_here":
+            yield "[错误] 请先在 .env 文件中配置 DEEPSEEK_API_KEY"
+            return
+
+        try:
+            response = await self.client.chat.completions.create(
+                model=settings.deepseek_chat_model,
+                messages=messages,
+                temperature=temperature,
+                stream=True,
+            )
+            async for chunk in response:
+                if chunk.choices and chunk.choices[0].delta.content:
+                    yield chunk.choices[0].delta.content
+        except Exception as e:
+            yield f"[错误] LLM 流式调用失败: {str(e)}"
+
 
 # 全局单例
 llm_client = LLMClient()
