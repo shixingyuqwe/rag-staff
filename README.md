@@ -2,8 +2,6 @@
 
 人事制度知识库 RAG 系统 — Monorepo 版本
 
-> **说明**：公司原前端仓库 `D:\aiProject\staff-manager-frontend` 不会被修改。
-> 本项目中的 `apps/web` 是学习项目副本。
 
 ## 项目结构
 
